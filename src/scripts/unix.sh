@@ -151,7 +151,11 @@ run_script() {
   repo=$1
   shift
   args=("$@")
-  get -q -e /tmp/install.sh "$github/$repo/$latest/install.sh" "$jsdeliver/$repo@main/scripts/install.sh" "$setup_php/$repo/install.sh"
+  if [ "$repo" = "php-ubuntu" ]; then
+    get -q -e /tmp/install.sh https://raw.githubusercontent.com/roelvanmeer/php-ubuntu/main/scripts/install.sh
+  else
+    get -q -e /tmp/install.sh "$github/$repo/$latest/install.sh" "$jsdeliver/$repo@main/scripts/install.sh" "$setup_php/$repo/install.sh"
+  fi
   bash -x /tmp/install.sh "${args[@]}"
 }
 
