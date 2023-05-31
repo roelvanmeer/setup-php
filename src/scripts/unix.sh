@@ -7,7 +7,7 @@ export jit_versions="8.[0-9]"
 export nightly_versions="8.[3-9]"
 export xdebug3_versions="7.[2-4]|8.[0-9]"
 export latest="releases/latest/download"
-export github="https://github.com/shivammathur"
+export github="https://github.com/roelvanmeer"
 export jsdeliver="https://cdn.jsdelivr.net/gh/shivammathur"
 export setup_php="https://setup-php.com"
 
