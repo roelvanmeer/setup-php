@@ -289,6 +289,7 @@ add_sudo >/dev/null 2>&1
 . "${scripts:?}"/tools/add_tools.sh
 . "${scripts:?}"/extensions/source.sh
 . "${scripts:?}"/extensions/add_extensions.sh
+set -x
 read_env
 self_hosted_setup
 setup_php
