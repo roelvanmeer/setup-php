@@ -17,13 +17,14 @@ self_hosted_helper() {
 
 # Function to fix broken packages.
 fix_broken_packages() {
+  echo "Fixing a proken install"
   sudo apt --fix-broken install
 }
 
 # Function to install a package
 install_packages() {
   packages=("$@")
-  $apt_install "${packages[@]}" >/dev/null 2>&1 || (update_lists && fix_broken_packages && $apt_install "${packages[@]}" >/dev/null 2>&1)
+  $apt_install "${packages[@]}" || (update_lists && fix_broken_packages && $apt_install "${packages[@]}")
 }
 
 # Function to disable an extension.
