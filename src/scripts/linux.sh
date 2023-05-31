@@ -17,7 +17,7 @@ self_hosted_helper() {
 
 # Function to fix broken packages.
 fix_broken_packages() {
-  sudo apt --fix-broken install >/dev/null 2>&1
+  sudo apt --fix-broken install
 }
 
 # Function to install a package
