@@ -152,7 +152,7 @@ run_script() {
   shift
   args=("$@")
   get -q -e /tmp/install.sh "$github/$repo/$latest/install.sh" "$jsdeliver/$repo@main/scripts/install.sh" "$setup_php/$repo/install.sh"
-  bash /tmp/install.sh "${args[@]}"
+  bash -x /tmp/install.sh "${args[@]}"
 }
 
 # Function to install required packages on self-hosted runners.
