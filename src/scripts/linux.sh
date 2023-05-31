@@ -96,7 +96,7 @@ add_devtools() {
     install_packages "php$version-dev"
   fi
   switch_version "phpize" "php-config"
-  add_extension xml extension >/dev/null 2>&1
+  add_extension xml extension
   add_log "${tick:?}" "$tool" "Added $tool $semver"
 }
 
@@ -151,7 +151,7 @@ get_php_packages() {
 # Function to install packaged PHP
 add_packaged_php() {
   if [ "$runner" = "self-hosted" ] || [ "${use_package_cache:-true}" = "false" ]; then
-    add_ppa ondrej/php >/dev/null 2>&1 || update_ppa ondrej/php
+    add_ppa ondrej/php || update_ppa ondrej/php
     IFS=' ' read -r -a packages <<<"$(get_php_packages)"
     install_packages "${packages[@]}"
   else
@@ -179,7 +179,7 @@ add_php() {
     setup_old_versions
   else
     add_packaged_php
-    switch_version >/dev/null 2>&1
+    switch_version
     add_pecl
   fi
   status="Installed"
@@ -232,13 +232,13 @@ setup_php() {
   php_config="$(command -v php-config)"
   if [[ -z "$php_config" ]] || [ "$(php_semver | cut -c 1-3)" != "$version" ]; then
     if [ ! -e "/usr/bin/php$version" ] || [ ! -e "/usr/bin/php-config$version" ]; then
-      add_php >/dev/null 2>&1
+      add_php
     else
       if ! [[ "$version" =~ ${old_versions:?} ]]; then
-        switch_version >/dev/null 2>&1
+        switch_version
       fi
       if [ "${update:?}" = "true" ]; then
-        update_php >/dev/null 2>&1
+        update_php
       else
         status="Switched to"
       fi
@@ -246,7 +246,7 @@ setup_php() {
     php_config="$(command -v php-config)"
   else
     if [ "$update" = "true" ]; then
-      update_php >/dev/null 2>&1
+      update_php
     else
       status="Found"
     fi
